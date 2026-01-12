@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+const EnglishLearningApp = () => {
+  const [progress, setProgress] = useState({ listening: 45, speaking: 30, vocab: 60 });
+
+  return (
+    <div className="p-6 max-w-4xl mx-auto bg-gray-50 min-h-screen">
+      <header className="mb-8 text-center">
+        <h1 className="text-3xl font-bold text-blue-800">Academic English Mastery</h1>
+        <p className="text-gray-600">Target: CEFR B2-C1 | Duration: 6 Months</p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        {Object.entries(progress).map(([key, value]) => (
+          <Card key={key}>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium uppercase">{key}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{value}%</div>
+              <div className="w-full bg-gray-200 h-2 mt-2 rounded-full">
+                <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${value}%` }}></div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <Tabs defaultValue="listening" className="w-full">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="listening">Listening</TabsTrigger>
+          <TabsTrigger value="speaking">Speaking (AI)</TabsTrigger>
+          <TabsTrigger value="vocab">Vocabulary</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="listening">
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-4">Academic Listening Practice</h3>
+              <div className="aspect-video bg-black rounded-lg mb-4 flex items-center justify-center text-white">
+                [YouTube API Placeholder - Study Lecture]
+              </div>
+              <p className="text-sm text-gray-500 italic">
+                Step: Listen to the segment and dictate the keywords.
+              </p>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="speaking">
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-4">Academic Reframing</h3>
+              <textarea 
+                className="w-full p-3 border rounded-md mb-4" 
+                placeholder="òbÇµÇΩÇ¢ì‡óeÇâpåÍÇ≈ì¸óÕÅAÇ‹ÇΩÇÕâπê∫ì¸óÕÇµÇƒÇ≠ÇæÇ≥Ç¢..."
+                rows={4}
+              />
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-md">
+                AIÇ…ìYçÌÅEêÙó˚ÇµÇƒÇ‡ÇÁÇ§
+              </button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="vocab">
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-4">Academic Word List (AWL)</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-4 border rounded text-center cursor-pointer hover:bg-blue-50">
+                  <p className="font-bold text-xl">Hypothesize</p>
+                  <p className="text-sm text-gray-500">âºê‡ÇóßÇƒÇÈ</p>
+                </div>
+                {/* åJÇËï‘Çµï\é¶ */}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+};
+
+export default EnglishLearningApp;
